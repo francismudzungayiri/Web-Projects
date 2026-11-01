@@ -1,58 +1,104 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
-function TransactionForm({ categories, onAdd }) {
+function TransactionForm({ categories, onAdd, onClose }) {
   const [description, setDescription] = useState("");
   const [amount, setAmount] = useState("");
   const [type, setType] = useState("expense");
   const [category, setCategory] = useState("food");
+  const dialogRef = useRef(null);
+  const descriptionRef = useRef(null);
+
+  useEffect(() => {
+    const dialog = dialogRef.current;
+    if (!dialog.open) dialog.showModal();
+    descriptionRef.current.focus();
+  }, []);
+
+  const close = () => dialogRef.current.close();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!description || !amount) return;
 
+    close();
     onAdd({
       id: Date.now(),
       description,
       amount: Number(amount),
       type,
       category,
-      date: new Date().toISOString().split('T')[0],
+      date: new Date().toLocaleDateString('en-CA'),
     });
-
-    setDescription("");
-    setAmount("");
-    setType("expense");
-    setCategory("food");
   };
 
   return (
-    <div className="add-transaction">
-      <h2>Add Transaction</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Amount"
-          value={amount}
-          onChange={(e) => setAmount(e.target.value)}
-        />
-        <select value={type} onChange={(e) => setType(e.target.value)}>
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
-        <select value={category} onChange={(e) => setCategory(e.target.value)}>
-          {categories.map(cat => (
-            <option key={cat} value={cat}>{cat}</option>
-          ))}
-        </select>
-        <button type="submit">Add</button>
-      </form>
-    </div>
+    <dialog
+      ref={dialogRef}
+      className="add-panel"
+      aria-labelledby="add-panel-title"
+      onClose={onClose}
+      onClick={(e) => { if (e.target === dialogRef.current) close(); }}
+    >
+      <div className="add-panel-content">
+        <div className="add-panel-header">
+          <h2 id="add-panel-title">Add transaction</h2>
+          <button className="icon-btn" aria-label="Close" onClick={close}>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit}>
+          <fieldset className="type-switch">
+            <legend className="visually-hidden">Type</legend>
+            {["expense", "income"].map(option => (
+              <label key={option}>
+                <input
+                  type="radio"
+                  name="type"
+                  value={option}
+                  checked={type === option}
+                  onChange={(e) => setType(e.target.value)}
+                />
+                <span>{option}</span>
+              </label>
+            ))}
+          </fieldset>
+          <label className="field">
+            Description
+            <input
+              ref={descriptionRef}
+              type="text"
+              required
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            />
+          </label>
+          <label className="field">
+            Amount
+            <input
+              type="number"
+              min="0.01"
+              step="0.01"
+              required
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
+          </label>
+          <label className="field">
+            Category
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              {categories.map(cat => (
+                <option key={cat} value={cat}>{cat}</option>
+              ))}
+            </select>
+          </label>
+          <button className="primary-btn" type="submit">Add transaction</button>
+        </form>
+      </div>
+    </dialog>
   );
 }
 

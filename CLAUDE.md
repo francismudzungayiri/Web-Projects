@@ -21,4 +21,4 @@ No test runner is configured.
 
 Client-only JavaScript (JSX, no TypeScript) with no backend, router, or state library. Transactions live in memory and reset to the hardcoded seed data on reload.
 
-`src/main.jsx` mounts `App` in `StrictMode`. `src/App.jsx` holds everything else in one component: the transaction list, form state, filter state, derived totals, and all markup. Styles are plain CSS, with globals in `src/index.css` and app styles in `src/App.css`.
+`src/main.jsx` mounts `App` in `StrictMode`. `src/App.jsx` owns the `transactions` state and the seed data, and passes them to the components in `src/components/`. `Summary` derives the totals, `TransactionForm` owns the form state and reports new transactions through `onAdd`, and `TransactionList` owns the filter state. Styles are plain CSS, with globals in `src/index.css` and app styles in `src/App.css`.

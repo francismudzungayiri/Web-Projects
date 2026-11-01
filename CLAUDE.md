@@ -22,8 +22,3 @@ No test runner is configured.
 Client-only JavaScript (JSX, no TypeScript) with no backend, router, or state library. Transactions live in memory and reset to the hardcoded seed data on reload.
 
 `src/main.jsx` mounts `App` in `StrictMode`. `src/App.jsx` holds everything else in one component: the transaction list, form state, filter state, derived totals, and all markup. Styles are plain CSS, with globals in `src/index.css` and app styles in `src/App.css`.
-
-## Known issues
-
-- `amount` is stored as a string, both in the seed data and from the form input. The `reduce` calls for `totalIncome` and `totalExpenses` therefore concatenate strings instead of adding numbers, so the totals and balance are wrong.
-- The seed entry "Freelance Work" has type `expense` but category `salary`, so it looks misclassified.

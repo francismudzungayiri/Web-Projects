@@ -1,0 +1,650 @@
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 24px 24px 96px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+}
+
+.income-amount {
+  color: var(--income);
+}
+
+.expense-amount {
+  color: var(--expense);
+}
+
+/* Buttons */
+
+.primary-btn {
+  min-height: 40px;
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--inverse-text);
+  background-color: var(--inverse-bg);
+  border: none;
+  border-radius: 10px;
+  transition: opacity 150ms;
+}
+
+.primary-btn:hover {
+  opacity: 0.85;
+}
+
+.icon-btn {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-radius: 10px;
+}
+
+.icon-btn:hover {
+  background-color: var(--surface-muted);
+}
+
+.icon-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Header */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Summary */
+
+.summary {
+  margin-bottom: 32px;
+  padding: 24px;
+}
+
+.summary-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.balance {
+  min-width: 0;
+}
+
+.balance h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.balance-amount {
+  font-size: clamp(40px, 10vw, 64px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  overflow-wrap: anywhere;
+}
+
+.ring {
+  position: relative;
+  flex: none;
+  width: 96px;
+  height: 96px;
+}
+
+.ring svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.ring circle {
+  fill: none;
+  stroke-width: 7;
+}
+
+.ring-track {
+  stroke: var(--surface-muted);
+}
+
+.ring-fill {
+  stroke: var(--accent);
+  stroke-linecap: round;
+  transition: stroke-dasharray 400ms ease-out;
+}
+
+.ring-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.15;
+}
+
+.ring-label strong {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ring-label span {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+}
+
+.stats dt {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.stats dd {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+/* Transactions */
+
+.transactions > h2 {
+  margin-bottom: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pill {
+  flex: none;
+  min-height: 32px;
+  padding: 4px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-transform: capitalize;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  transition: background-color 150ms, color 150ms;
+}
+
+.pill:hover {
+  color: var(--text);
+}
+
+.pill[aria-pressed="true"] {
+  color: var(--inverse-text);
+  background-color: var(--inverse-bg);
+  border-color: var(--inverse-bg);
+}
+
+.day {
+  margin-bottom: 20px;
+}
+
+.day h3 {
+  margin-bottom: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.day ul {
+  list-style: none;
+  overflow: hidden;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  min-height: 64px;
+  padding: 12px 16px;
+  background-color: var(--surface);
+}
+
+.row + .row {
+  border-top: 1px solid var(--border);
+}
+
+.row-icon {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--text-muted);
+  background-color: var(--surface-muted);
+  border-radius: 12px;
+}
+
+.category-icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.row-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.row-description {
+  font-size: 15px;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.row-category {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-transform: capitalize;
+}
+
+.row-amount {
+  flex: none;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.delete-btn {
+  flex: none;
+  min-height: 32px;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--expense);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.delete-btn:hover {
+  background-color: var(--surface-muted);
+}
+
+.row-more {
+  display: none;
+}
+
+/* With a mouse, Delete appears on hover or keyboard focus. */
+@media (hover: hover) {
+  .row {
+    position: relative;
+  }
+
+  .row-amount {
+    transition: margin-right 120ms ease-out;
+  }
+
+  .row:hover .row-amount,
+  .row:focus-within .row-amount {
+    margin-right: 72px;
+  }
+
+  .delete-btn {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    opacity: 0;
+    transform: translateY(-50%);
+    transition: opacity 120ms;
+  }
+
+  .row:hover .delete-btn,
+  .row:focus-within .delete-btn {
+    opacity: 1;
+  }
+}
+
+/* On touch screens, the more button reveals Delete. */
+@media (hover: none) {
+  .row-more {
+    display: inline-flex;
+  }
+
+  .delete-btn {
+    display: none;
+    margin-left: auto;
+  }
+
+  .row.is-revealed .delete-btn {
+    display: block;
+    min-height: 40px;
+  }
+}
+
+.empty-state {
+  padding: 32px 16px;
+  font-size: 14px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Add transaction panel: side panel on desktop, bottom sheet on phones */
+
+.add-panel {
+  width: 400px;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: none;
+  margin: 0 0 0 auto;
+  color: var(--text);
+  background-color: var(--surface);
+  border: none;
+  border-left: 1px solid var(--border);
+}
+
+.add-panel[open] {
+  animation: panel-from-side 220ms ease-out;
+}
+
+.add-panel::backdrop {
+  background-color: rgb(0 0 0 / 0.4);
+}
+
+@keyframes panel-from-side {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes panel-from-bottom {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+.add-panel-content {
+  padding: 20px 24px calc(24px + env(safe-area-inset-bottom));
+}
+
+.add-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.add-panel-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.add-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.add-panel .primary-btn {
+  min-height: 44px;
+  margin-top: 4px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.field input,
+.field select {
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 12px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.field select {
+  text-transform: capitalize;
+}
+
+.type-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  padding: 4px;
+  background-color: var(--surface-muted);
+  border: none;
+  border-radius: 12px;
+}
+
+.type-switch label {
+  position: relative;
+}
+
+.type-switch input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.type-switch span {
+  display: block;
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 9px;
+}
+
+.type-switch input:checked + span {
+  color: var(--text);
+  background-color: var(--surface);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.12);
+}
+
+.type-switch input:focus-visible + span {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Undo */
+
+.undo-toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  padding: 10px 10px 10px 16px;
+  overflow: hidden;
+  font-size: 14px;
+  color: var(--inverse-text);
+  background-color: var(--inverse-bg);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgb(0 0 0 / 0.2);
+  view-transition-name: undo-toast;
+}
+
+.undo-toast span {
+  overflow-wrap: anywhere;
+}
+
+.undo-toast::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent);
+  transform-origin: left;
+  animation: undo-countdown var(--undo-duration) linear forwards;
+}
+
+@keyframes undo-countdown {
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.undo-toast button {
+  flex: none;
+  min-height: 32px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: inherit;
+  background: none;
+  border: none;
+  border-radius: 8px;
+}
+
+.undo-toast button:hover {
+  text-decoration: underline;
+}
+
+.undo-toast button:focus-visible {
+  outline-color: var(--inverse-text);
+}
+
+/* List motion */
+
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-group(*) {
+  animation-duration: 220ms;
+  animation-timing-function: ease-out;
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 16px 16px 96px;
+  }
+
+  .summary {
+    padding: 20px;
+  }
+
+  .pills {
+    flex-wrap: nowrap;
+    margin: 0 -16px;
+    padding: 2px 16px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .ring {
+    width: 80px;
+    height: 80px;
+  }
+
+  .ring-label strong {
+    font-size: 16px;
+  }
+
+  .add-panel {
+    width: 100%;
+    max-width: 100%;
+    height: fit-content;
+    max-height: 90dvh;
+    margin: auto 0 0;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    border-radius: 20px 20px 0 0;
+  }
+
+  .add-panel[open] {
+    animation-name: panel-from-bottom;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ring-fill {
+    transition: none;
+  }
+
+  .add-panel[open] {
+    animation: none;
+  }
+
+  .undo-toast::after {
+    display: none;
+  }
+}
